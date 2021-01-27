@@ -18,6 +18,10 @@ let coverValueNumber = parseInt(coverValue);
 const coverPrice = document.getElementById('cover-price').innerText;
 const coverPriceNumber = parseInt(coverPrice);
 
+// subtotal
+document.getElementById('subtotal').innerText =
+  phonePriceNumber + coverPriceNumber;
+
 // phone Button Plus event
 phoneButtonPlus.addEventListener('click', function () {
   // phone plus count update
@@ -26,6 +30,8 @@ phoneButtonPlus.addEventListener('click', function () {
 
   //phone price update
   updatePrice('phone-price', phonePriceNumber, phoneValueNumber);
+  // subtotal update
+  subtotal('phone-price', 'cover-price');
 });
 
 // phone Button Minus event
@@ -36,6 +42,8 @@ phoneButtonMinus.addEventListener('click', function () {
 
   //phone price update
   updatePrice('phone-price', phonePriceNumber, phoneValueNumber);
+  // subtotal update
+  subtotal('phone-price', 'cover-price');
 });
 
 // cover Button Plus event
@@ -46,6 +54,8 @@ coverButtonPlus.addEventListener('click', function () {
 
   //cover price update
   updatePrice('cover-price', coverPriceNumber, coverValueNumber);
+  // subtotal update
+  subtotal('phone-price', 'cover-price');
 });
 
 // cover Button Minus event
@@ -56,6 +66,8 @@ coverButtonMinus.addEventListener('click', function () {
 
   //cover price update
   updatePrice('cover-price', coverPriceNumber, coverValueNumber);
+  // subtotal update
+  subtotal('phone-price', 'cover-price');
 });
 
 // update plus count function
@@ -70,5 +82,15 @@ function updateMinusCount(id, value) {
 
 //Price update function
 function updatePrice(id, price, value) {
-  document.getElementById(id).innerText = price * value;
+  let x = (document.getElementById(id).innerText = price * value);
+  return x;
 }
+
+// subtotal Function
+function subtotal(phonePriceId, coverPriceId) {
+  document.getElementById('subtotal').innerText =
+    updatePrice(phonePriceId, phonePriceNumber, phoneValueNumber) +
+    updatePrice(coverPriceId, coverPriceNumber, coverValueNumber);
+}
+
+//================================================
